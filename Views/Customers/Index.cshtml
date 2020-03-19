@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Garbarje.Models.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CusFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CusLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CusAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CusZipcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasRecycleBin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountBalance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdentityUser)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CusFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CusLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CusAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CusZipcode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasRecycleBin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountBalance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,65 @@
+﻿@model Garbarje.Models.Customer
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Customer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CId" />
+            <div class="form-group">
+                <label asp-for="CusFirstName" class="control-label"></label>
+                <input asp-for="CusFirstName" class="form-control" />
+                <span asp-validation-for="CusFirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CusLastName" class="control-label"></label>
+                <input asp-for="CusLastName" class="form-control" />
+                <span asp-validation-for="CusLastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CusAddress" class="control-label"></label>
+                <input asp-for="CusAddress" class="form-control" />
+                <span asp-validation-for="CusAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CusZipcode" class="control-label"></label>
+                <input asp-for="CusZipcode" class="form-control" />
+                <span asp-validation-for="CusZipcode" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasRecycleBin" /> @Html.DisplayNameFor(model => model.HasRecycleBin)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountBalance" class="control-label"></label>
+                <input asp-for="AccountBalance" class="form-control" />
+                <span asp-validation-for="AccountBalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdentityUserId" class="control-label"></label>
+                <select asp-for="IdentityUserId" class="form-control" asp-items="ViewBag.IdentityUserId"></select>
+                <span asp-validation-for="IdentityUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
