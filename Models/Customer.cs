@@ -15,12 +15,16 @@ namespace Garbarje.Models
         public string CusLastName { get; set; }
         public string CusAddress { get; set; }
         public int CusZipcode { get; set; }
+        public string PickupDay { get; set; }
         public bool HasRecycleBin { get; set; }
         public double AccountBalance { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
+
+       /* public static readonly IEnumerable<List<string>> list = new IEnumerable<List<string>>() { "Monday", "Tuesday", "Wendsday", "Thursday", "Friday", "Saturday", "Sunday" };
+        */
 
     }
 }

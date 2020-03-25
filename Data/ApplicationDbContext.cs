@@ -22,11 +22,27 @@ namespace Garbarje.Data
             new IdentityRole
             {
                 Name = "Admin",
-                NormalizedName = "ADMIN"
+                NormalizedName = "ADMIN",
+            },
+            new IdentityRole
+            {
+                Name = "Customer",
+                NormalizedName = "CUSTOMER",
+            },
+            new IdentityRole
+            {
+                Name = "Employee",
+                NormalizedName = "EMPLOYEE",
+
+
+
             }
-         );
+         ) ;
         }
-        public DbSet<Garbarje.Models.Customer> Customer { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+
+            
 
     }
  }

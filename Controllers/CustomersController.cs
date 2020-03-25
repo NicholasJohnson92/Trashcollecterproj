@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Garbarje.Data;
 using Garbarje.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Garbarje.Controllers
 {
@@ -15,18 +16,26 @@ namespace Garbarje.Controllers
 
     public class CustomersController : Controller
     {
+        
+
         private readonly ApplicationDbContext _context;
+
+        
 
         public CustomersController(ApplicationDbContext context)
         {
+          
             _context = context;
         }
 
         // GET: Customers
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Customer.Include(c => c.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer =await _context.Customer.Where(c => c.IdentityUserId ==
+            userId).ToListAsync();
+
+            return View(customer);
         }
 
         // GET: Customers/Details/5
@@ -60,10 +69,11 @@ namespace Garbarje.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CId,CusFirstName,CusLastName,CusAddress,CusZipcode,HasRecycleBin,AccountBalance,IdentityUserId")] Customer customer)
+        public async Task<IActionResult> Create([Bind("CId,CusFirstName,CusLastName,CusAddress,CusZipcode,HasRecycleBin,Pickup day,IdentityUserId")] Customer customer)
         {
             if (ModelState.IsValid)
             {
+                customer.AccountBalance = 0;
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -94,8 +104,17 @@ namespace Garbarje.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CId,CusFirstName,CusLastName,CusAddress,CusZipcode,HasRecycleBin,AccountBalance,IdentityUserId")] Customer customer)
-        {
+        public async Task<IActionResult> Edit(int id, [Bind("CId,CusFirstName,CusLastName,CusAddress,CusZipcode,HasRecycleBin,PickupDay,IdentityUserId")] Customer customer)
+        {/* ViewBag.DaysoftheWeek = new SelectList()
+        {  new SelectListItem(){ Value = "Monday", Text = "Monday" },
+           new SelectListItem(){ Value="Tuesday", Text="Tuesday" }
+           new SelectListItem(){Value="Monday", Text="Monday" }
+           new SelectListItem(){Value="Monday", Text="Monday" }
+           new SelectListItem(){Value="Monday", Text="Monday" }
+            new SelectListItem(){Value="Monday", Text="Monday" }
+            new SelectListItem(){Value="Monday", Text="Monday" }
+
+        };*/
             if (id != customer.CId)
             {
                 return NotFound();
@@ -158,6 +177,10 @@ namespace Garbarje.Controllers
         private bool CustomerExists(int id)
         {
             return _context.Customer.Any(e => e.CId == id);
+        }
+        public void Payment(int id) 
+        {
+        
         }
     }
 }

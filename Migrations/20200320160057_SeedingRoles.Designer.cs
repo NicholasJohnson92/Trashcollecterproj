@@ -4,14 +4,16 @@ using Garbarje.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Garbarje.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200320160057_SeedingRoles")]
+    partial class SeedingRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,9 +72,6 @@ namespace Garbarje.Migrations
                     b.Property<string>("EmployeeLastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmployeeZipcode")
-                        .HasColumnType("int");
-
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
 
@@ -112,22 +111,22 @@ namespace Garbarje.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "608bed97-18a8-4e94-bfcc-45d21bc31801",
-                            ConcurrencyStamp = "226e7c13-dc95-45d4-82bc-8a699c6845fb",
+                            Id = "8ab0c817-9d62-401b-aeda-4961125e9e11",
+                            ConcurrencyStamp = "11321509-900c-444d-9d7f-8a250a411064",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "13dffa3d-199a-400e-96b6-650edd3a2887",
-                            ConcurrencyStamp = "0315576f-be53-4e2a-88f4-699363f8e74a",
+                            Id = "43c6f040-b967-4ae8-977c-8d88f186f4bb",
+                            ConcurrencyStamp = "8096fd8e-310a-44ad-8170-ae719011a602",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "eae97671-6a44-4014-9afb-0340a1d8a5d0",
-                            ConcurrencyStamp = "2f9c3c25-4b39-40a3-a43d-6f6835fd5926",
+                            Id = "8d9429f8-aa19-42af-a11d-9846377a2d86",
+                            ConcurrencyStamp = "5babc81a-53fb-4ce5-88ce-6e92e186e925",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         });

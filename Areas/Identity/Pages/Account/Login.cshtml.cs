@@ -82,8 +82,14 @@ namespace Garbarje.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    /*_logger.LogInformation("User logged in.");
+                    if (_userManager.IsInRoleAsync(_userManager.Users.Where(s=>s.Id==_userManager),"Customer")) { }
+                    else if(){ }*/
+
+                  
+                        
+                      
+
                 }
                 if (result.RequiresTwoFactor)
                 {

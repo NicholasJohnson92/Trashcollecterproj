@@ -111,6 +111,14 @@ namespace Garbarje.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
+                        if (Input.Role == "Customer") {
+                            return RedirectToAction("Create", "Customers");
+
+                        }
+                        else if (Input.Role=="Employee")
+                        {
+                            return RedirectToAction("Create", "Employees");
+                        }
                         return LocalRedirect(returnUrl);
                     }
                 }

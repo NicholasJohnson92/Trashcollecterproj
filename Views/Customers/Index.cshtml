@@ -23,7 +23,7 @@
                 @Html.DisplayNameFor(model => model.CusAddress)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CusZipcode)
+                @Html.DisplayNameFor(model => model.PickupDay)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.HasRecycleBin)
@@ -31,9 +31,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.AccountBalance)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdentityUser)
-            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -50,7 +48,7 @@
                 @Html.DisplayFor(modelItem => item.CusAddress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CusZipcode)
+                @Html.DisplayFor(modelItem => item.PickupDay)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.HasRecycleBin)
@@ -58,13 +56,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.AccountBalance)
             </td>
+            
             <td>
-                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.CId">Edit info</a> |
+               
+                <a asp-action="Delete" asp-route-id="@item.CId">Delete info</a>
             </td>
         </tr>
 }
